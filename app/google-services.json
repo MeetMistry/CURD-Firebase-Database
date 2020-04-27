@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "571510841138",
+    "firebase_url": "https://curd-database-d0152.firebaseio.com",
+    "project_id": "curd-database-d0152",
+    "storage_bucket": "curd-database-d0152.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571510841138:android:dff4284e26ae114420012b",
+        "android_client_info": {
+          "package_name": "com.example.curddatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571510841138-6rq06rikgnpbv08di9ncfhtk0cbmn957.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbEayHCKlV93y1m4_wuRtaRCz6fdGmsLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571510841138-6rq06rikgnpbv08di9ncfhtk0cbmn957.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
