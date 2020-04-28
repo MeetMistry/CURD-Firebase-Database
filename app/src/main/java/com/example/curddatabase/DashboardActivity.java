@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +20,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -84,6 +90,42 @@ public class DashboardActivity extends AppCompatActivity {
                 mAuth.signOut();
                 startActivity(new Intent(DashboardActivity.this, MainActivity.class));
                 finish();
+            }
+        });
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reference = FirebaseDatabase.getInstance().getReference().child(user.getUid());
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("email", edtEmail.getText().toString());
+                map.put("username", edtUsername.getText().toString());
+                map.put("password", edtPassword.getText().toString());
+                map.put("fullname", edtFullName.getText().toString());
+                map.put("phone", edtPhone.getText().toString());
+
+                reference.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(DashboardActivity.this, "Update Successful", Toast.LENGTH_SHORT);
+                    }
+                });
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reference = FirebaseDatabase.getInstance().getReference().child(user.getUid());
+                reference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(DashboardActivity.this, "Data Deleted", Toast.LENGTH_SHORT);
+                        //startActivity(new Intent(DashboardActivity.this, MainActivity.class));
+                        //finish();
+                    }
+                });
             }
         });
     }
